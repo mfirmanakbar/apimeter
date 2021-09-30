@@ -3,11 +3,19 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <link rel="icon" th:href="@{/images/ico-apimeter.png}" type="image/icon type">
+    <title th:text="${title}"></title>
+
+    <link th:href="@{/webjars/bootstrap/5.0.2/css/bootstrap.min.css}" rel="stylesheet">
+    <script th:src="@{/webjars/bootstrap/5.0.2/js/bootstrap.bundle.min.js}"></script>
+    <link th:href="@{/webjars/font-awesome/5.15.3/css/all.css}" th:rel="stylesheet"/>
+    <script th:src="@{/webjars/jquery/1.10.1/jquery.min.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
 <div>
-    <a th:href="@{/plan}">Go to plan page ...</a>
+    <a th:href="@{/plans}">Go to plan page ...</a>
 </div>
 </body>
 </html>
