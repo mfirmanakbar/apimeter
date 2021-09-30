@@ -12,14 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PlanController {
 
     @GetMapping("")
-    public String index(Model model) {
-        model.addAttribute("title", "Plans");
+    public String welcome(Model model) {
+        model.addAttribute("title", "Test Plan");
         return "/plan/index";
     }
 
-    @GetMapping("/create")
-    public String create(Model model) {
-        model.addAttribute("title", "Create new Plan");
-        return "/plan/create";
-    }
+
 }
