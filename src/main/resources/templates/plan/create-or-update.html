@@ -19,11 +19,11 @@
 
     <div class="row mt-4 mb-1">
         <div class="col">
-            <h5 th:text="${title}"></h5>
+            <h5 th:text="${title} + ': ' + ${plan.id}"></h5>
         </div>
         <div class="col text-end">
             <a th:href="@{/plans}">
-                <i class="fas fa-plus"></i> Back
+                <i class="fas fa-chevron-left"></i> Back
             </a>
         </div>
     </div>
@@ -50,7 +50,8 @@
                         <div class="col-md-5">
                             <div class="mb-3">
                                 <label class="form-label">Plan Name</label>
-                                <input type="text" class="form-control" placeholder="Plan Name" th:field="*{planName}"
+                                <input type="text" class="form-control" placeholder="Plan Name"
+                                       th:field="*{planName}"
                                        required>
                             </div>
                         </div>
@@ -73,7 +74,8 @@
                             <div class="mb-3">
                                 <label class="form-label">Req Header</label>
                                 <textarea class="form-control" rows="6"
-                                          th:placeholder="${placeholderReqHeader}" th:field="*{reqHeader}"></textarea>
+                                          th:placeholder="${placeholderReqHeader}"
+                                          th:field="*{reqHeader}"></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -85,7 +87,7 @@
                         </div>
                     </div>
 
-                    <div class="d-grid gap-2">
+                    <div th:if="${isSubmit}" class="d-grid gap-2">
                         <button class="btn btn-primary" type="submit">Save</button>
                     </div>
                 </div>

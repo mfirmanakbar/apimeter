@@ -22,8 +22,17 @@
             <h5 th:text="${title}"></h5>
         </div>
         <div class="col text-end">
-            <a th:href="@{/plans/create}">
-                <i class="fas fa-plus"></i> Add Test Plan
+            <a th:href="@{'/plans/' + ${plan.id} + '/clear'}" class="btn btn-danger btn-sm">
+                <i class="fas fa-broom"></i> Clear
+            </a>
+            <a th:href="@{/plans}" class="btn btn-primary btn-sm">
+                <i class="far fa-paper-plane"></i> Plans
+            </a>
+            <a th:href="@{'/plans/' + ${plan.id} + '/view'}" class="btn btn-warning btn-sm">
+                <i class="fas fa-info"></i> Info
+            </a>
+            <a th:href="@{'/plans/' + ${plan.id} + '/start'}" class="btn btn-success btn-sm">
+                <i class="fas fa-play"></i> Start
             </a>
         </div>
     </div>
@@ -34,16 +43,15 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Method</th>
-                    <th>createdAt</th>
-                    <th>Name</th>
-                    <th>Threads</th>
-                    <th class="text-end">Action</th>
+                    <th>Created At</th>
+                    <th>Plan Id</th>
+                    <th>Thread Name</th>
+                    <th>Execution Time</th>
+                    <th>Response Status Code</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="plan, iteration : ${plans}">
-                    <td th:text="${plan.id}"></td>
+                <!--<tr th:each="plan, iteration : ${plans}">
                     <td th:text="${plan.method}"></td>
                     <td th:text="${plan.createdAt}"></td>
                     <td th:text="${plan.planName}"></td>
@@ -59,7 +67,7 @@
                             <i class="fas fa-play"></i>
                         </a>
                     </td>
-                </tr>
+                </tr>-->
                 </tbody>
             </table>
         </div>
