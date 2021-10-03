@@ -30,35 +30,42 @@
     <hr>
     <div class="card mt-4">
         <div class="card-body">
-            <form METHOD="post" th:action="@{/plans/create}" th:object="${planReq}">
+            <form METHOD="post" th:action="@{/plans/createOrUpdate}" th:object="${plan}">
+                <input type="hidden" class="form-control" placeholder="Plan ID" th:field="*{id}">
                 <div>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="mb-3">
                                 <label class="form-label">Http Method</label>
-                                <select th:field="*{method}" class="form-select" aria-label="Default select example">
-                                    <option value="GET">GET</option>
-                                    <option value="POST">POST</option>
+                                <select th:field="*{method}" class="form-select" aria-label="Default select example"
+                                        required>
+                                    <option value="GET" class="text-success">GET</option>
+                                    <option value="POST" disabled>POST</option>
+                                    <option value="PUT" disabled>PUT</option>
+                                    <option value="PATCH" disabled>PATCH</option>
+                                    <option value="DELETE" disabled>DELETE</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="mb-3">
                                 <label class="form-label">Plan Name</label>
-                                <input type="text" class="form-control" placeholder="Plan Name" th:field="*{planName}">
+                                <input type="text" class="form-control" placeholder="Plan Name" th:field="*{planName}"
+                                       required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label class="form-label">Number of Threads</label>
                                 <input type="number" class="form-control" placeholder="Number of Threads"
-                                       th:field="*{numberOfThreads}">
+                                       th:field="*{numberOfThreads}" required min="1" max="1000">
                             </div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">URL</label>
-                        <input type="text" class="form-control" placeholder="http:// or https://" th:field="*{url}">
+                        <input type="text" class="form-control" placeholder="http:// or https://" th:field="*{url}"
+                               required>
                     </div>
 
                     <div class="row">

@@ -33,13 +33,32 @@
             <table class="table mt-2">
                 <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Start</th>
-                    <th scope="col">Plan Name</th>
-                    <th scope="col">Num Of Threads</th>
-                    <th scope="col">Action</th>
+                    <th>Method</th>
+                    <th>createdAt</th>
+                    <th>Name</th>
+                    <th>Threads</th>
+                    <th class="text-end">Action</th>
                 </tr>
                 </thead>
+                <tbody>
+                <tr th:each="plan, iteration : ${plans}">
+                    <td th:text="${plan.method}"></td>
+                    <td th:text="${plan.createdAt}"></td>
+                    <td th:text="${plan.planName}"></td>
+                    <td th:text="${plan.numberOfThreads}"></td>
+                    <td class="text-end">
+                        <a th:href="@{'/plans/' + ${plan.id} + '/delete'}" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                        <a th:href="@{'/plans/' + ${plan.id} + '/edit'}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                        <a th:href="@{'/plans/' + ${plan.id} + '/running'}" class="btn btn-success btn-sm">
+                            <i class="fas fa-play"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
             </table>
         </div>
     </div>
