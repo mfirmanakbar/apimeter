@@ -22,7 +22,7 @@
             <h5 th:text="${title}"></h5>
         </div>
         <div class="col text-end">
-            <a th:href="@{'/plans/' + ${plan.id} + '/clear'}" class="btn btn-danger btn-sm">
+            <a th:href="@{'/threads/' + ${plan.id} + '/clear'}" class="btn btn-danger btn-sm">
                 <i class="fas fa-broom"></i> Clear
             </a>
             <a th:href="@{/plans}" class="btn btn-primary btn-sm">
@@ -31,7 +31,7 @@
             <a th:href="@{'/plans/' + ${plan.id} + '/view'}" class="btn btn-warning btn-sm">
                 <i class="fas fa-info"></i> Info
             </a>
-            <a th:href="@{'/plans/' + ${plan.id} + '/start'}" class="btn btn-success btn-sm">
+            <a th:href="@{'/threads/' + ${plan.id} + '/start'}" class="btn btn-success btn-sm">
                 <i class="fas fa-play"></i> Start
             </a>
         </div>

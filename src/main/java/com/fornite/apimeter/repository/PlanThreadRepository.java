@@ -13,4 +13,7 @@ public interface PlanThreadRepository extends JpaRepository<PlanThread, Long> {
     @Query(value = "SELECT * FROM plans_threads order BY id DESC", nativeQuery = true)
     List<PlanThread> findAllDesc();
 
+    long deleteByPlanId(long id);
+
+    List<PlanThread> findByPlanId(long planId);
 }

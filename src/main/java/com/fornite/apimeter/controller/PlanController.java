@@ -72,7 +72,7 @@ public class PlanController {
             return "redirect:/plans";
         }
 
-        List<PlanThread> threads = planThreadService.findAllDesc();
+        List<PlanThread> threads = planThreadService.findByPlanId(id);
 
         model.addAttribute("title", "Run a Plan ID: " + id);
         model.addAttribute("plan", plan);

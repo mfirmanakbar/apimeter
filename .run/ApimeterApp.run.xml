@@ -1,0 +1,22 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ApimeterApp" type="Application" factoryName="Application">
+    <envs>
+      <env name="DATABASE_HOST" value="localhost" />
+      <env name="DATABASE_PORT" value="3306" />
+      <env name="DATABASE_NAME" value="apimeter" />
+      <env name="DATABASE_USERNAME" value="root" />
+      <env name="DATABASE_PASSWORD" value="p4ssw0rd" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="com.fornite.apimeter.ApimeterApplication" />
+    <module name="apimeter" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.fornite.apimeter.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
