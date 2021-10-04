@@ -36,7 +36,6 @@ public class PlanThreadController {
         if (plan == null) {
             return CompletableFuture.completedFuture("redirect:/plans");
         }
-        //CompletableFuture.runAsync(() -> planThreadService.threadRun(plan));
         CompletableFuture.runAsync(() -> planThreadService.threadRunCf(plan));
         return CompletableFuture.completedFuture("redirect:/plans/" + id + "/running");
     }
