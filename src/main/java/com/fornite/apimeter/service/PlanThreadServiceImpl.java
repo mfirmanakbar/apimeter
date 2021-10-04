@@ -57,6 +57,7 @@ public class PlanThreadServiceImpl implements PlanThreadService {
         for (int i = 0; i < plan.getNumberOfThreads(); i++) {
             CompletableFuture.runAsync(() -> {
                 log.info("#Name: {} - #Time: {}", Thread.currentThread().getName(), new Date());
+                httpRequestThreadCF(plan);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -65,6 +66,12 @@ public class PlanThreadServiceImpl implements PlanThreadService {
             });
         }
         return CompletableFuture.completedFuture(null);
+    }
+
+    private void httpRequestThreadCF(Plan plan) {
+        /*CompletableFuture.supplyAsync(() -> {
+
+        });*/
     }
 
     private void httpRequestThread(Plan plan) {

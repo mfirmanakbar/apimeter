@@ -16,7 +16,28 @@ public class WelcomeController {
 
     @GetMapping("")
     public String welcome() {
-        /*String title = "WebHookSite";
+        //getExample();
+        //postExample();
+        return "/welcome";
+    }
+
+    private void getExample() {
+        String title = "WebHookSite";
+        String url = "https://jsonplaceholder.typicode.com/users/3";
+
+        HttpParam httpParam = new HttpParam(title, url, "");
+
+        HttpResults result = HttpHelper.requestByGet(httpParam, headerSet -> {
+            //headerSet.setHeader("Auth", "123456");
+            //headerSet.setHeader("Key", "678901");
+            return headerSet;
+        });
+
+        log.info("response: {}", result);
+    }
+
+    private void postExample() {
+        String title = "WebHookSite";
         String url = "https://jsonplaceholder.typicode.com/users";
 
         JSONObject data = new JSONObject();
@@ -29,13 +50,10 @@ public class WelcomeController {
             headerSet.setHeader("Auth", "123456");
             headerSet.setHeader("Key", "678901");
             return headerSet;
-        });*/
+        });
 
-        //log.info("response: {}", result);
-
-        return "/welcome";
+        log.info("response: {}", result);
     }
-
 
 
 }
