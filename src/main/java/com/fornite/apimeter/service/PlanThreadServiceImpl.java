@@ -2,6 +2,9 @@ package com.fornite.apimeter.service;
 
 import com.fornite.apimeter.entity.Plan;
 import com.fornite.apimeter.entity.PlanThread;
+import com.fornite.apimeter.helper.HttpHelper;
+import com.fornite.apimeter.helper.HttpParam;
+import com.fornite.apimeter.helper.HttpResults;
 import com.fornite.apimeter.repository.PlanThreadRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,9 +72,33 @@ public class PlanThreadServiceImpl implements PlanThreadService {
     }
 
     private void httpRequestThreadCF(Plan plan) {
-        /*CompletableFuture.supplyAsync(() -> {
+        CompletableFuture.runAsync(() -> {
+            if (plan.getMethod().equals("GET"))
+                httpGet(plan);
+        });
+    }
 
-        });*/
+    private void httpGet(Plan plan) {
+        HttpParam httpParam = new HttpParam(plan.getPlanName(), plan.getUrl(), plan.getReqBody());
+        HttpResults result = HttpHelper.requestByGet(httpParam, headerSet -> {
+            //headerSet.setHeader("Auth", "123456");
+            return headerSet;
+        });
+
+        storeThreadDb(plan, result);
+    }
+
+    private void storeThreadDb(Plan plan, HttpResults httpResults) {
+        CompletableFuture.runAsync(() -> {
+            PlanThread planThread = PlanThread.builder()
+                    .planId(plan.getId())
+                    .createdAt(new Date())
+                    .threadName(Thread.currentThread().getName())
+                    .executionTime(httpResults.getTime())
+                    .codeStatus(httpResults.getCode())
+                    .build();
+            planThreadRepository.save(planThread);
+        });
     }
 
     private void httpRequestThread(Plan plan) {

@@ -1,10 +1,12 @@
 package com.fornite.apimeter.helper;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.*;
 
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class HttpResults {
     private String title;
     private String url;

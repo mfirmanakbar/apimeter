@@ -17,9 +17,9 @@ public class PlanThread {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private Date createdAt;
     private long planId;
+    private Date createdAt;
     private String threadName;
-    private String executionTime;
-    private String codeStatus;
+    private double executionTime;
+    private int codeStatus;
 }

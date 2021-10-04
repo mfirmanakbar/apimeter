@@ -55,5 +55,4 @@ public class WelcomeController {
         log.info("response: {}", result);
     }
 
-
 }
