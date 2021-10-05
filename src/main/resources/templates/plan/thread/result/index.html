@@ -21,7 +21,7 @@
             <h5 th:text="${title}"></h5>
         </div>
         <div class="col text-end">
-            <a th:href="@{/plans/x/running}">
+            <a th:href="@{'/plans/' + ${planId} +'/threads'}">
                 <i class="fas fa-chevron-left"></i> Back
             </a>
         </div>

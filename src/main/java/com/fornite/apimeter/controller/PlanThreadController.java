@@ -29,7 +29,7 @@ public class PlanThreadController {
     @Autowired
     PlanThreadService planThreadService;
 
-    @Async("asyncExecutor")
+    /*@Async("asyncExecutor")
     @GetMapping("/{id}/start")
     public CompletableFuture<String> start(Model model, @PathVariable("id") long id) {
         Plan plan = planService.findById(id);
@@ -38,7 +38,7 @@ public class PlanThreadController {
         }
         CompletableFuture.runAsync(() -> planThreadService.threadRunCf(plan));
         return CompletableFuture.completedFuture("redirect:/plans/" + id + "/running");
-    }
+    }*/
 
     @GetMapping("/{id}/clear")
     public String clear(Model model, @PathVariable("id") long id) {

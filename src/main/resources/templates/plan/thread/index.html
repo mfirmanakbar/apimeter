@@ -22,21 +22,29 @@
             <h5 th:text="${title}"></h5>
         </div>
         <div class="col text-end">
-            <a th:href="@{'/threads/' + ${plan.id} + '/clear'}" class="btn btn-danger btn-sm">
-                <i class="fas fa-broom"></i> Clear
-            </a>
-            <a th:href="@{/plans}" class="btn btn-primary btn-sm">
-                <i class="far fa-paper-plane"></i> Plans
-            </a>
-            <a th:href="@{'/plans/' + ${plan.id} + '/view'}" class="btn btn-warning btn-sm">
-                <i class="fas fa-info"></i> Info
-            </a>
-            <a th:href="@{'/threads/' + ${plan.id} + '/start'}" class="btn btn-success btn-sm">
-                <i class="fas fa-play"></i> Start
+            <a th:href="@{/plans}">
+                <i class="fas fa-chevron-left"></i> Back
             </a>
         </div>
     </div>
     <hr>
+    <div class="row">
+        <div class="col-md">
+
+            <div class="col text-end">
+                <a th:href="@{'/threads/' + ${plan.id} + '/clear'}" class="btn btn-danger btn-sm">
+                    <i class="fas fa-broom"></i> Clear
+                </a>
+                <a th:href="@{'/plans/' + ${plan.id} + '/view'}" class="btn btn-primary btn-sm">
+                    <i class="fas fa-info"></i> Info
+                </a>
+                <a th:href="@{'/plans/' + ${plan.id} + '/threads/start'}" class="btn btn-success btn-sm">
+                    <i class="fas fa-play"></i> Start
+                </a>
+            </div>
+
+        </div>
+    </div>
     <div class="card mt-4">
         <div class="card-body">
             <table class="table mt-2">
@@ -51,11 +59,11 @@
                 </thead>
                 <tbody>
                 <tr th:each="thread, iteration : ${threads}">
-                    <td th:text="${thread.id}"></td>
+                    <td th:text="${iteration.count}"></td>
                     <td th:text="${thread.createdAt}"></td>
                     <td th:text="${thread.threadName}"></td>
                     <td th:text="${thread.executionTime}"></td>
-                    <td><a th:href="@{'/results/'} + ${thread.id} + '/view'">View Response</a></td>
+                    <td><a th:href="@{'/plans/' + ${plan.id} + '/threads/' + ${thread.id} }">View Response</a></td>
                 </tr>
                 </tbody>
             </table>

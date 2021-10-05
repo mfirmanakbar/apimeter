@@ -20,7 +20,7 @@ public class PlanResultController {
     @Autowired
     PlanResultService planResultService;
 
-    @GetMapping("/{threadId}/view")
+    /*@GetMapping("/{threadId}/view")
     public String clear(Model model, @PathVariable("threadId") long threadId) {
         List<PlanResult> planResult = planResultService.findByThreadId(threadId);
 
@@ -28,6 +28,6 @@ public class PlanResultController {
         model.addAttribute("pResults", planResult);
 
         return "/plan/thread/result/index";
-    }
+    }*/
 
 }
