@@ -37,8 +37,8 @@ public class PlanThreadServiceImpl implements PlanThreadService {
     }
 
     @Override
-    public long deleteByPlanId(long planId) {
-        return planThreadRepository.deleteByPlanId(planId);
+    public void deleteByPlanId(long planId) {
+        planThreadRepository.deleteWithPlanId(planId);
     }
 
     @Override
@@ -107,6 +107,7 @@ public class PlanThreadServiceImpl implements PlanThreadService {
 
             if (planThreadSaved != null) {
                 PlanResult planResult = PlanResult.builder()
+                        .planId(plan.getId())
                         .threadId(planThreadSaved.getId())
                         .createdAt(new Date())
                         .responseHeader(null)

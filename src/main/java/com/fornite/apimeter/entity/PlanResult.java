@@ -17,6 +17,7 @@ public class PlanResult {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private long planId;
     private long threadId;
     private Date createdAt;
 

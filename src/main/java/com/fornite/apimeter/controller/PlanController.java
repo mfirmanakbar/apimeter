@@ -58,7 +58,7 @@ public class PlanController {
 
     @GetMapping("/{id}/delete")
     public String delete(Model model, @PathVariable("id") long id) {
-        planService.delete(id);
+        planService.deletePlanThreadResult(id);
         return "redirect:/plans";
     }
 
@@ -110,6 +110,12 @@ public class PlanController {
         }
         CompletableFuture.runAsync(() -> planThreadService.threadRunCf(plan));
         return CompletableFuture.completedFuture("redirect:/plans/" + id + "/threads");
+    }
+
+    @GetMapping("/{id}/threads/clear")
+    public String deleteThreadResult(Model model, @PathVariable("id") long id) {
+        planService.deleteThreadResult(id);
+        return "redirect:/plans/" + id + "/threads";
     }
 
     @GetMapping("/{planId}/threads/{threadId}")

@@ -11,7 +11,7 @@ public interface PlanThreadService {
 
     List<PlanThread> findAll();
 
-    long deleteByPlanId(long planId);
+    void deleteByPlanId(long planId);
 
     PlanThread findById(long id);
 

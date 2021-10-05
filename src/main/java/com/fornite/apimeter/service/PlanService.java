@@ -13,4 +13,8 @@ public interface PlanService {
     void delete(long id);
 
     List<Plan> findAllDesc();
+
+    void deletePlanThreadResult(long id);
+
+    void deleteThreadResult(long id);
 }

@@ -32,14 +32,14 @@
         <div class="col-md">
 
             <div class="col text-end">
-                <a th:href="@{'/threads/' + ${plan.id} + '/clear'}" class="btn btn-danger btn-sm">
+                <a th:href="@{'/plans/' + ${plan.id} + '/threads/clear'}" class="btn btn-danger btn-sm">
                     <i class="fas fa-broom"></i> Clear
                 </a>
                 <a th:href="@{'/plans/' + ${plan.id} + '/view'}" class="btn btn-primary btn-sm">
                     <i class="fas fa-info"></i> Info
                 </a>
                 <a th:href="@{'/plans/' + ${plan.id} + '/threads/start'}" class="btn btn-success btn-sm">
-                    <i class="fas fa-play"></i> Start
+                    <i class="fas fa-rocket"></i> Start
                 </a>
             </div>
 

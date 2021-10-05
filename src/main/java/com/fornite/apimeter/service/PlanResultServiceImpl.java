@@ -17,4 +17,9 @@ public class PlanResultServiceImpl implements PlanResultService {
     public List<PlanResult> findByThreadId(long threadId) {
         return planResultRepository.findByThreadId(threadId);
     }
+
+    @Override
+    public void deleteByPlanId(long planId) {
+        planResultRepository.deleteWithPlanId(planId);
+    }
 }

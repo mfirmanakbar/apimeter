@@ -2,6 +2,8 @@ package com.fornite.apimeter.service;
 
 import com.fornite.apimeter.entity.Plan;
 import com.fornite.apimeter.repository.PlanRepository;
+import com.fornite.apimeter.repository.PlanResultRepository;
+import com.fornite.apimeter.repository.PlanThreadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,12 @@ public class PlanServiceImpl implements PlanService {
 
     @Autowired
     PlanRepository planRepository;
+
+    @Autowired
+    PlanThreadRepository planThreadRepository;
+
+    @Autowired
+    PlanResultRepository planResultRepository;
 
     @Override
     public Plan save(Plan plan) {
@@ -31,5 +39,18 @@ public class PlanServiceImpl implements PlanService {
     @Override
     public List<Plan> findAllDesc() {
         return planRepository.findAllDesc();
+    }
+
+    @Override
+    public void deletePlanThreadResult(long id) {
+        planResultRepository.deleteWithPlanId(id);
+        planThreadRepository.deleteWithPlanId(id);
+        delete(id);
+    }
+
+    @Override
+    public void deleteThreadResult(long id) {
+        planResultRepository.deleteWithPlanId(id);
+        planThreadRepository.deleteWithPlanId(id);
     }
 }
