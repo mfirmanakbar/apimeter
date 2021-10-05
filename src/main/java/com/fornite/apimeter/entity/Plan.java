@@ -22,6 +22,7 @@ public class Plan {
     private String method;
     private String planName;
     private long numberOfThreads;
+    private long period;
     private String url;
 
     @Lob

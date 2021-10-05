@@ -64,12 +64,15 @@ public class PlanThreadServiceImpl implements PlanThreadService {
     public CompletableFuture<?> threadRunCf(Plan plan) {
         for (int i = 0; i < plan.getNumberOfThreads(); i++) {
             CompletableFuture.runAsync(() -> {
-                log.info("#Name: {} - #Time: {}", Thread.currentThread().getName(), new Date());
+                //log.info("#Name: {} - #Time: {}", Thread.currentThread().getName(), new Date());
                 httpRequestThreadCF(plan);
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                if (plan.getPeriod() > 0) {
+                    long period = plan.getPeriod() / plan.getNumberOfThreads();
+                    try {
+                        Thread.sleep(period);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }
