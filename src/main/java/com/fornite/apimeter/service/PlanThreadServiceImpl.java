@@ -1,10 +1,12 @@
 package com.fornite.apimeter.service;
 
 import com.fornite.apimeter.entity.Plan;
+import com.fornite.apimeter.entity.PlanResult;
 import com.fornite.apimeter.entity.PlanThread;
 import com.fornite.apimeter.helper.HttpHelper;
 import com.fornite.apimeter.helper.HttpParam;
 import com.fornite.apimeter.helper.HttpResults;
+import com.fornite.apimeter.repository.PlanResultRepository;
 import com.fornite.apimeter.repository.PlanThreadRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 @Service
 public class PlanThreadServiceImpl implements PlanThreadService {
+
+    @Autowired
+    PlanResultRepository planResultRepository;
 
     @Autowired
     PlanThreadRepository planThreadRepository;
@@ -79,7 +84,7 @@ public class PlanThreadServiceImpl implements PlanThreadService {
     }
 
     private void httpGet(Plan plan) {
-        HttpParam httpParam = new HttpParam(plan.getPlanName(), plan.getUrl(), plan.getReqBody());
+        HttpParam httpParam = new HttpParam(plan.getPlanName(), plan.getUrl(), plan.getRequestBody());
         HttpResults result = HttpHelper.requestByGet(httpParam, headerSet -> {
             //headerSet.setHeader("Auth", "123456");
             return headerSet;
@@ -97,7 +102,19 @@ public class PlanThreadServiceImpl implements PlanThreadService {
                     .executionTime(httpResults.getTime())
                     .codeStatus(httpResults.getCode())
                     .build();
-            planThreadRepository.save(planThread);
+
+            PlanThread planThreadSaved = planThreadRepository.save(planThread);
+
+            if (planThreadSaved != null) {
+                PlanResult planResult = PlanResult.builder()
+                        .threadId(planThreadSaved.getId())
+                        .createdAt(new Date())
+                        .responseHeader(null)
+                        .responseBody(httpResults.getBodyResponse())
+                        .build();
+                planResultRepository.save(planResult);
+            }
+
         });
     }
 

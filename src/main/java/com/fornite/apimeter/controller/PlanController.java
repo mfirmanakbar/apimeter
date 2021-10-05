@@ -37,21 +37,16 @@ public class PlanController {
 
     @GetMapping("/create")
     public String create(Model model) {
-        Plan plan = new Plan();
-        String placeholderReqHeader = "Content-Type:application/json\nAuthorization:123456\n";
-        String placeholderReqBody = "param1:123\nparam2:abc\n";
-
-        model.addAttribute("title", "Create Plan");
-        model.addAttribute("plan", plan);
-        model.addAttribute("placeholderReqHeader", placeholderReqHeader);
-        model.addAttribute("placeholderReqBody", placeholderReqBody);
-
-        return "/plan/create-or-update";
+        return viewCreateEditPage(model, 0, "Create", new Plan());
     }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") long id) {
-        return viewPageAndEditPage(model, id, "Edit");
+        Plan plan = planService.findById(id);
+        if (plan == null) {
+            return "redirect:/plans";
+        }
+        return viewCreateEditPage(model, id, "Edit", plan);
     }
 
     @GetMapping("/{id}/delete")
@@ -62,7 +57,11 @@ public class PlanController {
 
     @GetMapping("/{id}/view")
     public String view(Model model, @PathVariable("id") long id) {
-        return viewPageAndEditPage(model, id, "View");
+        Plan plan = planService.findById(id);
+        if (plan == null) {
+            return "redirect:/plans";
+        }
+        return viewCreateEditPage(model, id, "View", plan);
     }
 
     @GetMapping("/{id}/running")
@@ -95,17 +94,12 @@ public class PlanController {
         return "redirect:/plans";
     }
 
-    private String viewPageAndEditPage(Model model, long id, String fun) {
+    private String viewCreateEditPage(Model model, long id, String fun, Plan plan) {
         String placeholderReqHeader = "Content-Type:application/json\nAuthorization:123456\n";
         String placeholderReqBody = "param1:123\nparam2:abc\n";
         boolean isSubmit = false;
 
-        Plan plan = planService.findById(id);
-        if (plan == null) {
-            return "redirect:/plans";
-        }
-
-        if (fun.equalsIgnoreCase("Edit")) {
+        if (fun.equalsIgnoreCase("Edit") || fun.equalsIgnoreCase("Create")) {
             isSubmit = true;
         }
 

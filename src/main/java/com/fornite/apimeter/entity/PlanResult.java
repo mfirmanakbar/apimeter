@@ -11,22 +11,18 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "plans")
-public class Plan {
+@Table(name = "plans_results")
+public class PlanResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private long threadId;
     private Date createdAt;
-    private Date updatedAt;
-    private String method;
-    private String planName;
-    private long numberOfThreads;
-    private String url;
 
     @Lob
-    private String requestHeader;
+    private String responseHeader;
 
     @Lob
-    private String requestBody;
+    private String responseBody;
 }
