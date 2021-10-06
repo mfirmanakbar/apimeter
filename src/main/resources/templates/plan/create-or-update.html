@@ -34,6 +34,14 @@
                 <input type="hidden" class="form-control" placeholder="Plan ID" th:field="*{id}">
                 <div>
                     <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Plan Name</label>
+                                <input type="text" class="form-control" placeholder="Plan Name"
+                                       th:field="*{planName}"
+                                       required>
+                            </div>
+                        </div>
                         <div class="col-md-3">
                             <div class="mb-3">
                                 <label class="form-label">Http Method</label>
@@ -47,15 +55,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-5">
-                            <div class="mb-3">
-                                <label class="form-label">Plan Name</label>
-                                <input type="text" class="form-control" placeholder="Plan Name"
-                                       th:field="*{planName}"
-                                       required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="mb-3">
                                 <label class="form-label">Number of Threads</label>
                                 <input type="number" class="form-control" placeholder="Number of Threads"
@@ -66,16 +66,23 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">Period Time (milliseconds)</label>
+                                <label class="form-label">URL</label>
+                                <input type="text" class="form-control" placeholder="http:// or https://"
+                                       th:field="*{url}"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label">Period (milliseconds)</label>
                                 <input type="text" class="form-control" placeholder="e.g 5000" th:field="*{period}"
                                        required>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="mb-3">
-                                <label class="form-label">URL</label>
-                                <input type="text" class="form-control" placeholder="http:// or https://"
-                                       th:field="*{url}"
+                                <label class="form-label">Loop (0 : infinity loop)</label>
+                                <input type="text" class="form-control" placeholder="e.g 1" th:field="*{looping}"
                                        required>
                             </div>
                         </div>

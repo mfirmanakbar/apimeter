@@ -17,7 +17,5 @@ public interface PlanThreadService {
 
     List<PlanThread> findByPlanId(long planId);
 
-    void threadRun(Plan plan);
-
     CompletableFuture<?> threadRunCf(Plan plan);
 }

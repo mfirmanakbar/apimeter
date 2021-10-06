@@ -52,29 +52,22 @@ public class PlanThreadServiceImpl implements PlanThreadService {
     }
 
     @Override
-    public void threadRun(Plan plan) {
-        /*for (int i = 0; i < plan.getNumberOfThreads(); i++) {
-            PlanThreadRun threadRun = new PlanThreadRun(plan);
-            threadRun.start();
-        }*/
-        httpRequestThread(plan);
-    }
-
-    @Override
     public CompletableFuture<?> threadRunCf(Plan plan) {
-        for (int i = 0; i < plan.getNumberOfThreads(); i++) {
-            CompletableFuture.runAsync(() -> {
-                //log.info("#Name: {} - #Time: {}", Thread.currentThread().getName(), new Date());
-                httpRequestThreadCF(plan);
-                if (plan.getPeriod() > 0) {
-                    long period = plan.getPeriod() / plan.getNumberOfThreads();
-                    try {
-                        Thread.sleep(period);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+        for (int a = 0; a < plan.getLooping(); a++) {
+            for (int i = 0; i < plan.getNumberOfThreads(); i++) {
+                CompletableFuture.runAsync(() -> {
+                    //log.info("#Name: {} - #Time: {}", Thread.currentThread().getName(), new Date());
+                    httpRequestThreadCF(plan);
+                    if (plan.getPeriod() > 0) {
+                        long period = plan.getPeriod() / plan.getNumberOfThreads();
+                        try {
+                            Thread.sleep(period);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-            });
+                });
+            }
         }
         return CompletableFuture.completedFuture(null);
     }
@@ -122,18 +115,4 @@ public class PlanThreadServiceImpl implements PlanThreadService {
         });
     }
 
-    private void httpRequestThread(Plan plan) {
-        Runnable runnable = () -> {
-            String threadName = Thread.currentThread().getName();
-            log.info(
-                    "ThreadName: {} - ThreadTime: {}",
-                    threadName, new Date()
-            );
-        };
-
-        for (int i = 0; i < plan.getNumberOfThreads(); i++) {
-            Thread thr = new Thread(runnable, "The Thread " + i);
-            thr.start();
-        }
-    }
 }

@@ -39,6 +39,7 @@
                     <th>Name</th>
                     <th class="text-end">Threads</th>
                     <th class="text-end">Period</th>
+                    <th class="text-end">Looping</th>
                     <th class="text-end">Action</th>
                 </tr>
                 </thead>
@@ -50,6 +51,7 @@
                     <td th:text="${plan.planName}"></td>
                     <td class="text-end" th:text="${plan.numberOfThreads}"></td>
                     <td class="text-end" th:text="${plan.period} + ' ms'"></td>
+                    <td class="text-end" th:text="${plan.looping} + ' times'"></td>
                     <td class="text-end">
                         <a th:href="@{'/plans/' + ${plan.id} + '/delete'}" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i>

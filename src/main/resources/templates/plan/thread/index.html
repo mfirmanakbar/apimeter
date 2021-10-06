@@ -54,7 +54,8 @@
                     <th>Created At</th>
                     <th>Thread Name</th>
                     <th>Execution Time</th>
-                    <th>Response Status Code</th>
+                    <th>Status Code</th>
+                    <th>Response</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -63,7 +64,8 @@
                     <td th:text="${thread.createdAt}"></td>
                     <td th:text="${thread.threadName}"></td>
                     <td th:text="${thread.executionTime}"></td>
-                    <td><a th:href="@{'/plans/' + ${plan.id} + '/threads/' + ${thread.id} }">View Response</a></td>
+                    <td th:text="${thread.codeStatus}"></td>
+                    <td><a th:href="@{'/plans/' + ${plan.id} + '/threads/' + ${thread.id} }">View</a></td>
                 </tr>
                 </tbody>
             </table>

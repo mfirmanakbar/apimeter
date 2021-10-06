@@ -23,6 +23,7 @@ public class Plan {
     private String planName;
     private long numberOfThreads;
     private long period;
+    private long looping;
     private String url;
 
     @Lob
